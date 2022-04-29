@@ -1,0 +1,22 @@
+import Vue from "vue";
+import {Button} from "vant";
+import { Form } from 'vant';
+import { Field } from 'vant';
+import { NavBar } from 'vant';
+import { Picker } from 'vant';
+import { Popup } from 'vant';
+import { Icon } from 'vant';
+import { DatetimePicker } from 'vant';
+import { Uploader } from 'vant';
+import { Toast } from 'vant';
+
+Vue.use(Toast);
+Vue.use(Uploader);
+Vue.use(DatetimePicker);
+Vue.use(Icon);
+Vue.use(Popup);
+Vue.use(Picker);
+Vue.use(NavBar);
+Vue.use(Form);
+Vue.use(Field);
+Vue.use(Button);
