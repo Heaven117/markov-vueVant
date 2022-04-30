@@ -9,7 +9,18 @@ import { Icon } from 'vant';
 import { DatetimePicker } from 'vant';
 import { Uploader } from 'vant';
 import { Toast } from 'vant';
+import { Checkbox, CheckboxGroup } from 'vant';
+import { Swipe, SwipeItem } from 'vant';
+import { Lazyload } from 'vant';
+import { Tab, Tabs } from 'vant';
 
+Vue.use(Tab);
+Vue.use(Tabs);
+Vue.use(Lazyload);
+Vue.use(Swipe);
+Vue.use(SwipeItem);
+Vue.use(Checkbox);
+Vue.use(CheckboxGroup);
 Vue.use(Toast);
 Vue.use(Uploader);
 Vue.use(DatetimePicker);

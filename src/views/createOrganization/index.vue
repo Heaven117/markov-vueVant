@@ -12,14 +12,6 @@
             :rules="[{ required: true}]"
         />
         <van-field
-            readonly clickable is-link
-            name="typeList"
-            :value="model.typeList"
-            label="组织类型"
-            placeholder="选择组织类型"
-            @click="showPicker($event,1,0)"
-        />
-        <van-field
             v-model="model.location"
             readonly clickable is-link
             name="location"
@@ -41,6 +33,20 @@
             placeholder="请输入组织口号"
             :rules="[{ required: true}]"
         />
+        <van-field
+            name="typeList"
+            label="组织类型"
+        >
+          <template #input>
+            <van-checkbox-group v-model="model.typeList" >
+              <van-checkbox v-for="item in typeListOption"
+                            :key="item"
+                            :name="item" shape="square">
+                {{item}}
+              </van-checkbox>
+            </van-checkbox-group>
+          </template>
+        </van-field>
 
         <div class="title">条件说明</div>
         <van-field
@@ -77,10 +83,10 @@
         />
 
         <div class="title">图片上传</div>
-        <van-field name="imgsList">
+        <van-field name="photo">
           <template #input>
-            <van-uploader v-model="model.imgsList"
-                          :max-size="1*1024 * 1024"
+            <van-uploader v-model="model.photo"
+                          :max-size="1 * 1024 * 1024"
                           @oversize="onOversize"/>
           </template>
         </van-field>
@@ -97,11 +103,11 @@
         />
 
         <div class="title">徽标上传</div>
-        <van-field name="icon">
+        <van-field name="teamLogo">
           <template #input>
-            <van-uploader v-model="model.icon"
+            <van-uploader v-model="model.teamLogo"
                           :max-count="1"
-                          :max-size="1*1024 * 1024"
+                          :max-size="1 * 1024 * 1024"
                           @oversize="onOversize"
             />
           </template>
@@ -127,15 +133,8 @@
 
 <script>
 import topbar from "@/components/topbar/index.vue";
-import pickers from "../../components/pickers/pickers";
-const typeListOption=[
-  "疫情防控",
-  "街道办事",
-  "指挥人流",
-  "街道打扫",
-  "社区站岗",
-  "其他类型"
-];
+import pickers from "@/components/pickers/pickers";
+// import {insertTeam,imgUpload} from "@/api/index";
 
 export default {
   components:{
@@ -144,6 +143,14 @@ export default {
   },
   data() {
     return {
+      typeListOption: [
+        "疫情防控",
+        "街道办事",
+        "指挥人流",
+        "街道打扫",
+        "社区站岗",
+        "其他类型"
+      ],
       model: {
         creatorId: JSON.parse(window.localStorage.getItem("userMsg")).userId,
         creatorName: JSON.parse(window.localStorage.getItem("userMsg")).userName,
@@ -154,10 +161,10 @@ export default {
         conditionInstruction:"",
         auditInstruction:"",
         info: "",
-        typeList: "",
-        imgsList: [],
+        typeList: [],
+        photo: [],
         photoIntroduction:"",
-        icon:[],
+        teamLogo:[],
       },
       //选择器类型 0-日期选择器 1-单列选择 2-时分选择
       title:"",
@@ -167,15 +174,14 @@ export default {
       optionType:-1,
     };
   },
-  created() {
-
-  },
+  created() {},
   methods: {
     onSubmit() {
       this.model.userId = `${
           JSON.parse(window.localStorage.getItem("userMsg")).userId
       }`;
       console.log('submit', this.model);
+      /*
       insertTeam(this.model).then(res => {
         console.log(res)
         if (res.data.code === 200) {
@@ -189,6 +195,7 @@ export default {
         }
       });
 
+       */
     },
     //选择器函数
     showPicker(e,pickerType,optionType){
@@ -222,11 +229,25 @@ export default {
     colunmsOption(){
       switch (this.optionType) {
         case 0:{
-          return typeListOption;
+          return this.typeListOption;
         }
       }
       return null;
     },
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (from.name === "gpsPage") {
+        vm.model = JSON.parse(sessionStorage.getItem("organizationMsg"));
+        vm.gpsMsg = vm.$route.params;
+        console.log(vm.$route.params,"B",to, from)
+        vm.model.location = vm.$route.params.address;
+        vm.model.longitude =
+            vm.$route.params.location && vm.$route.params.location.split(",")[0];
+        vm.model.latitude =
+            vm.$route.params.location && vm.$route.params.location.split(",")[1];
+      }
+    });
   }
 }
 </script>

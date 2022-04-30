@@ -10,7 +10,7 @@ export default {
     return {}
   },
   created() {
-    this.$router.push('createOrganization')
+    this.$router.push('organizationDetail')
   },
   methods: {
 
