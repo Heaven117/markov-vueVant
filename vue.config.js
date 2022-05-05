@@ -33,12 +33,12 @@ module.exports = {
   },
   css: {
     loaderOptions: {
-      stylus: {
-        'resolve url': true,
-        'import': [
-          './src/theme'
-        ]
-      },
+      // stylus: {
+      //   'resolve url': true,
+      //   'import': [
+      //     './src/theme'
+      //   ]
+      // },
       postcss: {
         plugins: [
           require('postcss-pxtorem')({
@@ -50,5 +50,6 @@ module.exports = {
     }
   },
   pluginOptions: {
+
   }
 }

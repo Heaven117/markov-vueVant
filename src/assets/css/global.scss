@@ -1,0 +1,151 @@
+@import './variables.scss';
+
+.clearfix::after {
+  content: '';
+  height: 0;
+  display: block;
+  clear: both;
+  visibility: hidden;
+}
+
+.bottom-1{
+  // float:left;
+  // margin-bottom: 10px;
+  width: 345px;
+}
+
+.submit-bottom {
+  width: 100%;
+  display: flex;
+  .bottom-2{
+    margin: 50px 20%;
+    width: 60%;
+    color: #FFFFFF;
+    font-family: PingFang SC;
+    text-align: center;
+    font-size: 17px;
+    letter-spacing: 5px;
+    line-height: 50px;
+    background: #3E7CFF;
+  }
+}
+
+.custom-item{
+  margin: 10px 0;
+  width: 345px;
+  .custom-item-title{
+    margin: 20px 0 3px 10px;
+    height: 20px;
+    text-align:left;
+    font-size: 15.5px;
+    font-weight:500;
+    font-family: PingFang SC;
+    color: #333333;
+    letter-spacing: 2px;
+  }
+
+  .custom-item-content{
+    display: inline-block;
+    margin-top:5px;
+    width:100%;
+    // padding: 10px;
+    box-sizing: border-box;
+    background:white;
+  }
+}
+
+.custom-item:lase-child {
+  margin-bottom: 20px;
+}
+
+.custom {
+  .custom-item-content {
+    padding: 10px;
+  }
+
+  .cube-upload-file {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .cube-upload-def,
+  .cube-upload-file,
+  .cube-upload-btn {
+    margin: 3px 0;
+  }
+}
+
+
+
+.cube-input input, .cube-select {
+}
+
+.cube-select {
+  padding-right: 15px;
+}
+
+.cube-select-icon, .cube-select_active .cube-select-icon {
+  right: 0px;
+  transform: translate(0, -50%) rotate(-90deg)
+}
+
+.cube-picker-wheel-item {
+  font-size: 14px;
+}
+
+.week-item {
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid sandybrown;
+  text-align: center;
+}
+.date-item {
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid beige;
+  text-align: center;
+}
+
+.BMapLabel-define,
+.BMapLabel {
+  opacity: .8;
+  border: 1px solid #3E7CFF !important;
+  span {
+    opacity: 1;
+  }
+
+  .BMapLabel-text{
+    position: relative;
+  }
+
+  .BMapLabel-close{
+    position: relative;
+    padding-left: 10px;
+    position: relative;
+    color: #3E7CFF;
+    box-sizing: border-box;
+    z-index: 99999999999999999;
+  }
+
+  .BMapLabel-close::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: 100%;
+    background-color: #3E7CFF;
+    transform: translate(0,-50%);
+  }
+}
+
+.cube-picker {
+  z-index: 10000 !important;
+}
+

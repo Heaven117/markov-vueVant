@@ -1,0 +1,29 @@
+var arr = [2,3,4,5,6];
+var bb= ?
+console.log(bb); // [4, 9, 16, 25, 36]
+
+
+
+var obj = {
+	name: 'zhangsan',
+	age: '18',
+	profession: '软件',
+}
+var newObj = ?
+console.log(newObj);  // name: zhangsan,age: 18,profession: '软件'
+
+
+var obj1 = {
+	name: '张三',
+	age: '18',
+	profession: '软件',
+	hobby: ['吃饭', '睡觉', '打豆豆'],
+	relation: {
+		colleague: '李四',
+		classmate: '王五'
+	}
+}
+
+var newObj1 = ?
+
+// 深克隆

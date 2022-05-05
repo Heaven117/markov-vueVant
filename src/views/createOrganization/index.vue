@@ -41,7 +41,9 @@
             <van-checkbox-group v-model="model.typeList" >
               <van-checkbox v-for="item in typeListOption"
                             :key="item"
-                            :name="item" shape="square">
+                            :name="item" shape="square"
+                            class="checkbox"
+              >
                 {{item}}
               </van-checkbox>
             </van-checkbox-group>
@@ -134,7 +136,7 @@
 <script>
 import topbar from "@/components/topbar/index.vue";
 import pickers from "@/components/pickers/pickers";
-// import {insertTeam,imgUpload} from "@/api/index";
+import {insertTeam,getTeamTypeListOption} from "@/api/team";
 
 export default {
   components:{
@@ -143,14 +145,7 @@ export default {
   },
   data() {
     return {
-      typeListOption: [
-        "疫情防控",
-        "街道办事",
-        "指挥人流",
-        "街道打扫",
-        "社区站岗",
-        "其他类型"
-      ],
+      typeListOption: [],
       model: {
         creatorId: JSON.parse(window.localStorage.getItem("userMsg")).userId,
         creatorName: JSON.parse(window.localStorage.getItem("userMsg")).userName,
@@ -174,14 +169,17 @@ export default {
       optionType:-1,
     };
   },
-  created() {},
+  created() {
+    getTeamTypeListOption().then( res =>{
+      this.typeListOption = res.data;
+    })
+  },
   methods: {
     onSubmit() {
       this.model.userId = `${
           JSON.parse(window.localStorage.getItem("userMsg")).userId
       }`;
       console.log('submit', this.model);
-      /*
       insertTeam(this.model).then(res => {
         console.log(res)
         if (res.data.code === 200) {
@@ -194,8 +192,6 @@ export default {
           this.$toast("创建失败");
         }
       });
-
-       */
     },
     //选择器函数
     showPicker(e,pickerType,optionType){
@@ -268,5 +264,8 @@ export default {
   padding: 0;
   margin-top: 10px;
   margin-bottom: 5px;
+}
+.checkbox{
+  margin: 10px 0;
 }
 </style>

@@ -2,6 +2,33 @@
 import apiConfig from '../config/http.js';
 import instance from '../util/http.js';
 
+// 创建组织时获取组织类型
+export const getTeamTypeListOption = function (){
+    return new Promise((resolve,reject)=>{
+        instance.get(`${apiConfig.apiVersions}/team/getTeamTypes`)
+            .then(res =>{
+                resolve(res.data)
+            })
+            .catch(err =>{reject(err)})
+    })
+}
+
+//创建组织
+export const insertTeam = function (params) {
+    return new Promise((resolve) => {
+        instance({
+            method: "post",
+            url: `${apiConfig.apiVersions}/team/insert`,
+            headers: {
+                'Content-type': 'application/json',
+            },
+            data: JSON.stringify(params)
+        }).then(res => {
+            resolve(res);
+        })
+    })
+}
+
 // 获取组织列表
 export const getOrganizationList = function () {
     return new Promise((resolve, reject) => {

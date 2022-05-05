@@ -68,8 +68,8 @@
         />
         <van-field
             readonly clickable is-link
-            name="usertype"
-            :value="model.usertype.text"
+            name="type"
+            :value="model.type.text"
             label="服务类型分类"
             placeholder="选择服务类型分类"
             @click="showPicker($event,1,0)"
@@ -121,7 +121,7 @@
 
 <script>
 import topbar from "@/components/topbar/index.vue";
-import pickers from "../../components/pickers/pickers";
+import pickers from "@/components/pickers/pickers";
 import { insertActivity } from "@/api/activity";
 import {getUserOrganizationInvolved} from "@/api/team";
 const UTO = [
@@ -146,13 +146,13 @@ export default {
         endTime: "",
         attendanceStart: "",
         attendanceEnd: "",
-        usertype: {},
+        type: {},
         teamId: {},
         activityInfo: "",
         imgsList: [{ url: 'https://img01.yzcdn.cn/vant/leaf.jpg' }],
 
       },
-      //选择器类型 0-日期选择器 1-单列选择 2-时分选择
+      //选择器类型 0-时间选择器 1-usertype选择 2-teamId选择
       title:"",
       pickerType:0,
       pickerTitle:"",
@@ -178,7 +178,7 @@ export default {
       this.model.userId = `${
           JSON.parse(window.localStorage.getItem("userMsg")).userId
       }`;
-      this.model.usertype = this.model.usertype.value;
+      this.model.type = this.model.type.value;
       this.model.teamId = this.model.teamId.value;
       console.log('submit', this.model);
 
